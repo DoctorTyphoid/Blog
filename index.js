@@ -5,13 +5,12 @@ const bodyParser = require("body-parser");
 const handleBars = require("express-handlebars");
 const indexRouter = require("./routes/index");
 const apiRouter = require("./routes/api/index");
-const app = express(); 
-const port = 3000; 
+const app = express(); //call express
+const port = 3000; //port for server
 
-app.engine("handlebars", handleBars({ defaultLayout : "main" }));
-app.set("view engine", "handlebars");
-app.use(bodyParser.urlencoded({ extended : false }));
-app.use("/", indexRouter);
-app.use("/api", apiRouter);
-app.listen(port, () => console.log("Server is running..."));
-
+app.engine("handlebars", handleBars({ defaultLayout : "main" })); //specify "main" as default .handlebars file
+app.set("view engine", "handlebars"); //tell to use handlebars as rendering engine
+app.use(bodyParser.urlencoded({ extended : false })); //no idea
+app.use("/", indexRouter); //indexRouter = index.js
+app.use("/api", apiRouter); //apiRouter = api/index.js
+app.listen(port, () => console.log("Server is running...")); // start listening for server traffic
