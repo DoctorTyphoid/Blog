@@ -45,7 +45,14 @@ router.get("/", function(req, res) {
 });
 
 router.get("/blog/:id", function(req, res) {
-  res.send("test");
+  //console.log(req);
+  Post.findById(req.params.id, (err, response) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render("post", response);
+    }
+  });
 });
 
 router.get("/login", (req, res) => {
@@ -99,12 +106,29 @@ router.post("/posts/add", (req, res) => {
   post = new Post();
   post.title = req.body.posttitle;
   post.body = req.body.postbody;
+  post.postedBy = req.user.username;
 
   Post.create(post, err => {
     if (err) console.log(err);
 
     res.redirect("/");
   });
+});
+router.get("/delete/:id", (req, res) => {
+  if (req.user) {
+    //Post.deleteOne({ _id: req.params.id }, err => { if(err) console.log(err))};
+    Post.deleteOne({ _id: req.params.id }, err => {
+      if (err) {
+        console.log(err);
+        res.send(err);
+      } else {
+        req.flash("success", "Post successfully deleted!");
+        res.redirect("/");
+      }
+    });
+  } else {
+    res.redirect("/blog/" + req.params.id);
+  }
 });
 
 module.exports = router; //export router for usage in /index

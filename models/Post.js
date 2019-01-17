@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 const blogPost = new Schema({
   title: { type: String, required: true },
   body: { type: String, required: true },
+  postedBy: { type: String, required: true },
   datePosted: Date
 });
 

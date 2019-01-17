@@ -1,5 +1,7 @@
-<h1>{{post.title}}</h1>
-<p>Authored by: {{post.user}}</p>
+<h1>{{title}}</h1>
+<p>Authored by: {{postedBy}}</p>
 
-<p>{{post.body}}</p>
-
+<p>{{body}}</p>
+{{#if user}}
+<a href="/delete/{{_id}}">Delete Post</a>
+{{/if}}
