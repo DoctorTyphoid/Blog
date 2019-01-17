@@ -1,1 +1,13 @@
-Footer
+<div>
+  <p>{{phone}} | {{email}}</p>
+</div>
+
+<div>
+  {{#if user}}
+
+  <a href="/logout">Logout</a>
+
+  {{else}}
+  <a href="/login">Login</a>
+  {{/if}}
+</div>

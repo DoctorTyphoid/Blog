@@ -1,5 +1,7 @@
 <h1>{{title}}</h1>
 {{#each posts}}
-   <a href="/blog/{{this.id}}"><h1>{{this.title}}</h1></a>
-   <p>{{this.body}}</p>
+<a href="/blog/{{this._id}}">
+  <h1>{{this.title}}</h1>
+</a>
+<p>{{this.body}}</p>
 {{/each}}
